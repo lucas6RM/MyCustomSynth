@@ -1,0 +1,18 @@
+/*BlackKey.Module.css*/
+.button {
+padding: 120px 20px  0px 20px;
+width: 50px;
+height: 140px;
+border-radius: 10px;
+text-align: center;
+background-color: hsl(283, 100%, 65%);
+border: 2px solid hsl(283, 100%, 40%);
+color: rgb(0, 0, 0);
+position:absolute;
+transform: translateX(-22px);
+z-index: 2;
+}
+
+.button:active{
+    background-color: hsl(283, 100%, 75%);
+}

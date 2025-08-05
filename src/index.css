@@ -1,0 +1,17 @@
+.pianoLayout {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: end;
+  margin: auto;
+  margin: 100px;
+}
+
+.colorPickers {
+  margin-top: 100 px;
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
