@@ -1,6 +1,8 @@
+import { useSynth } from '../../../providers/SynthProvider';
 import styles from './BlackKey.module.css'
 
 interface BlackKeyProps {
+    note?: string,
     bgColor?: string,
     borderColor?: string,
     isActive: boolean,
@@ -9,12 +11,20 @@ interface BlackKeyProps {
 }
 
 function BlackKey({
+     note ="",
      bgColor = "hsl(0, 0%, 0%)",
      borderColor = "hsl(0, 0%, 20%)",
      isActive,
      handleMouseDown,
      handleMouseUp,
     } : BlackKeyProps){
+
+         const { synth } = useSynth();
+        
+                if(isActive){
+                    synth.triggerAttackRelease(note,'8n')
+                }
+        
 
 
     return(

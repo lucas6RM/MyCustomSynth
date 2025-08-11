@@ -44,6 +44,7 @@ export default function PianoOctave({
                     handleMouseUp={ () => handleMouseUp(0) } 
                     />
                 <BlackKey 
+                    note={`C#${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorBlackKeys}
                     borderColor={borderColor}
                     isActive={ isActiveArray[1] } 
@@ -53,7 +54,7 @@ export default function PianoOctave({
             </div>
             <div >
                 <WhiteKey 
-                    note=""
+                    note={`D${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorWhiteKeys}
                     borderColor={borderColor}
                     isActive={ isActiveArray[2] } 
@@ -61,6 +62,7 @@ export default function PianoOctave({
                     handleMouseUp={ () => handleMouseUp(2) }  
                     />
                 <BlackKey 
+                    note={`D#${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorBlackKeys}
                     borderColor={borderColor}
                     isActive={ isActiveArray[3] } 
@@ -69,7 +71,7 @@ export default function PianoOctave({
                     />
             </div>
             <WhiteKey 
-                    note=""
+                    note={`E${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorWhiteKeys}
                     borderColor={borderColor}
                     isActive={ isActiveArray[4] } 
@@ -78,7 +80,7 @@ export default function PianoOctave({
                     />
             <div >
                 <WhiteKey 
-                    note=""
+                    note={`F${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorWhiteKeys}
                     borderColor={borderColor}
                     isActive={ isActiveArray[5] } 
@@ -86,6 +88,7 @@ export default function PianoOctave({
                     handleMouseUp={ () => handleMouseUp(5) } 
                     />
                 <BlackKey 
+                    note={`F#${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorBlackKeys}
                     borderColor={borderColor}
                     isActive={ isActiveArray[6] } 
@@ -95,7 +98,7 @@ export default function PianoOctave({
             </div>
             <div >
                 <WhiteKey 
-                    note=""
+                    note={`G${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorWhiteKeys}
                     borderColor={borderColor}
                     isActive={ isActiveArray[7] } 
@@ -103,6 +106,7 @@ export default function PianoOctave({
                     handleMouseUp={ () => handleMouseUp(7) }  
                     />
                 <BlackKey 
+                    note={`G#${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorBlackKeys}
                     borderColor={borderColor}
                     isActive={ isActiveArray[8] } 
@@ -112,7 +116,7 @@ export default function PianoOctave({
             </div>
             <div >
                 <WhiteKey 
-                    note=""
+                    note={`A${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorWhiteKeys}
                     borderColor={borderColor}
                     isActive={ isActiveArray[9] } 
@@ -120,6 +124,7 @@ export default function PianoOctave({
                     handleMouseUp={ () => handleMouseUp(9) }
                     />
                 <BlackKey 
+                    note={`A#${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorBlackKeys}
                     borderColor={borderColor}
                     isActive={ isActiveArray[10] } 
@@ -128,7 +133,7 @@ export default function PianoOctave({
                     />
             </div>
             <WhiteKey 
-                    note=""
+                    note={`B${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorWhiteKeys}
                     borderColor={borderColor}
                     isActive={ isActiveArray[11] } 

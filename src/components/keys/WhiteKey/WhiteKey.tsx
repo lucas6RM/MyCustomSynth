@@ -1,4 +1,5 @@
 
+import { useSynth } from '../../../providers/SynthProvider';
 import styles from './WhiteKey.module.css'
 
 interface WhiteKeyProps {
@@ -19,7 +20,12 @@ function WhiteKey({
      handleMouseUp,
     } : WhiteKeyProps){
     
-        
+        const { synth } = useSynth();
+
+        if(isActive){
+            synth.triggerAttackRelease(note,'8n')
+        }
+
 
     return(
         <button className={styles.button} style={{
@@ -28,7 +34,7 @@ function WhiteKey({
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
         >
-            {note}
+            {note.startsWith('C') ? note : ""}
         </button>
     );
 
