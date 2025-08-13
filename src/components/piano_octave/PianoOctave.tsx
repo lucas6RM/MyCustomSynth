@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import BlackKey from "../keys/BlackKey/BlackKey";
 import WhiteKey from "../keys/WhiteKey/WhiteKey";
 import styles from "./PianoOctave.module.css";
@@ -18,19 +18,35 @@ export default function PianoOctave({
     }: PianoOctaveProps){
 
         
-        const [isActiveArray, setIsActive] = useState(Array(12).fill(false));
+        const [isActive, setIsActive] = useState<Set<number>>(new Set());
+        const [isMouseDown, setIsMouseDown] = useState(false)
         
-        const handleMouseDown = (i: number) => {
-            const copyIsActiveArray = isActiveArray.slice();
-            copyIsActiveArray[i] = true;
-            setIsActive(copyIsActiveArray);
+        const onMouseDown = (i: number) => {
+            setIsMouseDown(true);
+            setIsActive(prev => new Set([...prev, i]));
+            
         };
 
-        const handleMouseUp = (i: number) => {
-            const copyIsActiveArray = isActiveArray.slice();
-            copyIsActiveArray[i] = false;
-            setIsActive(copyIsActiveArray);
+        const onMouseUp = () => {
+            setIsMouseDown(false);
+            setIsActive(new Set());
         };
+
+        const onMouseEnter = (i:number) => {
+            if(!isMouseDown) return;
+            setIsActive(prev => new Set([...prev, i]));
+        };
+
+        const onMouseLeave = (i:number) => {
+            setIsActive(prev => {
+                const newSet = prev;
+                newSet.delete(i) 
+                return newSet;
+            }
+            );
+
+        };
+
 
     return(
         <div className={styles.layout}>
@@ -39,17 +55,22 @@ export default function PianoOctave({
                     note={`C${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorWhiteKeys}
                     borderColor={borderColor} 
-                    isActive={ isActiveArray[0] } 
-                    handleMouseDown={ () => handleMouseDown(0) } 
-                    handleMouseUp={ () => handleMouseUp(0) } 
+                    isActive={ isActive.has(0) } 
+                    onMouseDown={ () => onMouseDown(0) } 
+                    onMouseUp={ () => onMouseUp() } 
+                    onMouseEnter={ () => onMouseEnter(0) }
+                    onMouseLeave={ () => onMouseLeave(0) }
+
                     />
                 <BlackKey 
                     note={`C#${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorBlackKeys}
                     borderColor={borderColor}
-                    isActive={ isActiveArray[1] } 
-                    handleMouseDown={ () => handleMouseDown(1) } 
-                    handleMouseUp={ () => handleMouseUp(1) } 
+                    isActive={ isActive.has(1)} 
+                    onMouseDown={ () => onMouseDown(1) } 
+                    onMouseUp={ () => onMouseUp() } 
+                    onMouseEnter={ () => onMouseEnter(1) }
+                    onMouseLeave={ () => onMouseLeave(1) }
                     />
             </div>
             <div >
@@ -57,43 +78,53 @@ export default function PianoOctave({
                     note={`D${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorWhiteKeys}
                     borderColor={borderColor}
-                    isActive={ isActiveArray[2] } 
-                    handleMouseDown={ () => handleMouseDown(2) }
-                    handleMouseUp={ () => handleMouseUp(2) }  
+                    isActive={ isActive.has(2)} 
+                    onMouseDown={ () => onMouseDown(2) }
+                    onMouseUp={ () => onMouseUp() } 
+                    onMouseEnter={ () => onMouseEnter(2) }
+                    onMouseLeave={ () => onMouseLeave(2) } 
                     />
                 <BlackKey 
                     note={`D#${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorBlackKeys}
                     borderColor={borderColor}
-                    isActive={ isActiveArray[3] } 
-                    handleMouseDown={ () => handleMouseDown(3) }
-                    handleMouseUp={ () => handleMouseUp(3) }
+                    isActive={ isActive.has(3)} 
+                    onMouseDown={ () => onMouseDown(3) }
+                    onMouseUp={ () => onMouseUp() }
+                    onMouseEnter={ () => onMouseEnter(3) }
+                    onMouseLeave={ () => onMouseLeave(3) }
                     />
             </div>
             <WhiteKey 
                     note={`E${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorWhiteKeys}
                     borderColor={borderColor}
-                    isActive={ isActiveArray[4] } 
-                    handleMouseDown={ () => handleMouseDown(4) } 
-                    handleMouseUp={ () => handleMouseUp(4) } 
+                    isActive={ isActive.has(4)} 
+                    onMouseDown={ () => onMouseDown(4) } 
+                    onMouseUp={ () => onMouseUp() } 
+                    onMouseEnter={ () => onMouseEnter(4) }
+                    onMouseLeave={ () => onMouseLeave(4) }
                     />
             <div >
                 <WhiteKey 
                     note={`F${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorWhiteKeys}
                     borderColor={borderColor}
-                    isActive={ isActiveArray[5] } 
-                    handleMouseDown={ () => handleMouseDown(5) } 
-                    handleMouseUp={ () => handleMouseUp(5) } 
+                    isActive={ isActive.has(5)} 
+                    onMouseDown={ () => onMouseDown(5) } 
+                    onMouseUp={ () => onMouseUp() } 
+                    onMouseEnter={ () => onMouseEnter(5) }
+                    onMouseLeave={ () => onMouseLeave(5) }
                     />
                 <BlackKey 
                     note={`F#${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorBlackKeys}
                     borderColor={borderColor}
-                    isActive={ isActiveArray[6] } 
-                    handleMouseDown={ () => handleMouseDown(6) } 
-                    handleMouseUp={ () => handleMouseUp(6) }
+                    isActive={ isActive.has(6)} 
+                    onMouseDown={ () => onMouseDown(6) } 
+                    onMouseUp={ () => onMouseUp() }
+                    onMouseEnter={ () => onMouseEnter(6) }
+                    onMouseLeave={ () => onMouseLeave(6) }
                     />
             </div>
             <div >
@@ -101,17 +132,21 @@ export default function PianoOctave({
                     note={`G${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorWhiteKeys}
                     borderColor={borderColor}
-                    isActive={ isActiveArray[7] } 
-                    handleMouseDown={ () => handleMouseDown(7) } 
-                    handleMouseUp={ () => handleMouseUp(7) }  
+                    isActive={ isActive.has(7) } 
+                    onMouseDown={ () => onMouseDown(7) } 
+                    onMouseUp={ () => onMouseUp() }  
+                    onMouseEnter={ () => onMouseEnter(7) }
+                    onMouseLeave={ () => onMouseLeave(7) }
                     />
                 <BlackKey 
                     note={`G#${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorBlackKeys}
                     borderColor={borderColor}
-                    isActive={ isActiveArray[8] } 
-                    handleMouseDown={ () => handleMouseDown(8) } 
-                    handleMouseUp={ () => handleMouseUp(8) }
+                    isActive={ isActive.has(8)} 
+                    onMouseDown={ () => onMouseDown(8) } 
+                    onMouseUp={ () => onMouseUp() }
+                    onMouseEnter={ () => onMouseEnter(8) }
+                    onMouseLeave={ () => onMouseLeave(8) }
                     />
             </div>
             <div >
@@ -119,26 +154,32 @@ export default function PianoOctave({
                     note={`A${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorWhiteKeys}
                     borderColor={borderColor}
-                    isActive={ isActiveArray[9] } 
-                    handleMouseDown={ () => handleMouseDown(9) } 
-                    handleMouseUp={ () => handleMouseUp(9) }
+                    isActive={ isActive.has(9)} 
+                    onMouseDown={ () => onMouseDown(9) } 
+                    onMouseUp={ () => onMouseUp() }
+                    onMouseEnter={ () => onMouseEnter(9) }
+                    onMouseLeave={ () => onMouseLeave(9) }
                     />
                 <BlackKey 
                     note={`A#${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorBlackKeys}
                     borderColor={borderColor}
-                    isActive={ isActiveArray[10] } 
-                    handleMouseDown={ () => handleMouseDown(10) } 
-                    handleMouseUp={ () => handleMouseUp(10) }
+                    isActive={ isActive.has(10) } 
+                    onMouseDown={ () => onMouseDown(10) } 
+                    onMouseUp={ () => onMouseUp() }
+                    onMouseEnter={ () => onMouseEnter(10) }
+                    onMouseLeave={ () => onMouseLeave(10) }
                     />
             </div>
             <WhiteKey 
                     note={`B${octaveIndex == null ? "" : octaveIndex}`}
                     bgColor={backgroundColorWhiteKeys}
                     borderColor={borderColor}
-                    isActive={ isActiveArray[11] } 
-                    handleMouseDown={ () => handleMouseDown(11) } 
-                    handleMouseUp={ () => handleMouseUp(11) } 
+                    isActive={ isActive.has(11) } 
+                    onMouseDown={ () => onMouseDown(11) } 
+                    onMouseUp={ () => onMouseUp() } 
+                    onMouseEnter={ () => onMouseEnter(11) }
+                    onMouseLeave={ () => onMouseLeave(11) }
                     />
         </div>
     );

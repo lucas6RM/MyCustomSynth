@@ -6,8 +6,10 @@ interface BlackKeyProps {
     bgColor?: string,
     borderColor?: string,
     isActive: boolean,
-    handleMouseDown: () => void,
-    handleMouseUp: () => void,
+    onMouseDown: () => void,
+    onMouseUp: () => void,
+    onMouseEnter: () => void,
+    onMouseLeave: () => void
 }
 
 function BlackKey({
@@ -15,8 +17,10 @@ function BlackKey({
      bgColor = "hsl(0, 0%, 0%)",
      borderColor = "hsl(0, 0%, 20%)",
      isActive,
-     handleMouseDown,
-     handleMouseUp,
+     onMouseDown: handleMouseDown,
+     onMouseUp: handleMouseUp,
+     onMouseEnter: onMouseEnter,
+     onMouseLeave: onMouseLeave
     } : BlackKeyProps){
 
          const { synth } = useSynth();
@@ -24,8 +28,6 @@ function BlackKey({
                 if(isActive){
                     synth.triggerAttackRelease(note,'8n')
                 }
-        
-
 
     return(
         <button 
@@ -38,6 +40,8 @@ function BlackKey({
             }
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
         >
 
         </button>

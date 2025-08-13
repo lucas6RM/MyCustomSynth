@@ -7,8 +7,10 @@ interface WhiteKeyProps {
     bgColor?: string,
     borderColor?: string,
     isActive: boolean,
-    handleMouseDown: () => void,
-    handleMouseUp: () => void,
+    onMouseDown: () => void,
+    onMouseUp: () => void,
+    onMouseEnter: () => void,
+    onMouseLeave: () => void
 }
 
 function WhiteKey({
@@ -16,8 +18,10 @@ function WhiteKey({
      bgColor = "#ffffff",
      borderColor = "#cccccc",
      isActive,
-     handleMouseDown,
-     handleMouseUp,
+     onMouseDown: onMouseDown,
+     onMouseUp: onMouseUp,
+     onMouseEnter: onMouseEnter,
+     onMouseLeave: onMouseLeave
     } : WhiteKeyProps){
     
         const { synth } = useSynth();
@@ -31,8 +35,10 @@ function WhiteKey({
         <button className={styles.button} style={{
             backgroundColor: isActive ? borderColor : bgColor,
             border: `2px solid ${borderColor}`,}} 
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
+            onMouseDown={onMouseDown}
+            onMouseUp={onMouseUp}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
         >
             {note.startsWith('C') ? note : ""}
         </button>
