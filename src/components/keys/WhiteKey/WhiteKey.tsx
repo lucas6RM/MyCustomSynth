@@ -22,12 +22,15 @@ function WhiteKey({
      onMouseUp: onMouseUp,
      onMouseEnter: onMouseEnter,
      onMouseLeave: onMouseLeave
-    } : WhiteKeyProps){
+    } : WhiteKeyProps) {
     
         const { synth } = useSynth();
 
         if(isActive){
-            synth.triggerAttackRelease(note,'8n')
+            synth.triggerAttack(note)
+        }
+        else{
+            synth.triggerRelease(note)
         }
 
 

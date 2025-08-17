@@ -1,19 +1,16 @@
-
-import './index.css';
+import "./index.css";
 import Piano from "./components/piano/Piano.tsx";
 
-import { SynthProvider } from './providers/SynthProvider.tsx';
-
+import { SynthProvider } from "./providers/SynthProvider.tsx";
+import { SynthControls } from "./components/synth_controls/SynthControls.tsx";
 
 function App() {
-
-
   return (
     <SynthProvider>
-      <Piano/>
+      <SynthControls />
+      <Piano />
     </SynthProvider>
-
-  )
+  );
 }
 
-export default App
+export default App;
