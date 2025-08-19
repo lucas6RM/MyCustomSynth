@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import BlackKey from "../keys/BlackKey/BlackKey";
 import WhiteKey from "../keys/WhiteKey/WhiteKey";
 import styles from "./PianoOctave.module.css";

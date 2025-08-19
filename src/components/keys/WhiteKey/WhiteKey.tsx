@@ -1,6 +1,10 @@
 
+
 import { useSynth } from '../../../providers/SynthProvider';
 import styles from './WhiteKey.module.css'
+import { useEffect } from 'react';
+
+import * as Tone from "tone";
 
 interface WhiteKeyProps {
     note?: string,
@@ -26,12 +30,17 @@ function WhiteKey({
     
         const { synth } = useSynth();
 
-        if(isActive){
-            synth.triggerAttack(note)
+        useEffect(() => {
+        if (isActive) {
+            if(synth.context.state !== 'running'){
+                synth.context.resume();
+                console.log("context audio was resumed")
+            };
+            synth.triggerAttack(note, Tone.now());
+        } else {
+            synth.triggerRelease(Tone.now());
         }
-        else{
-            synth.triggerRelease(note)
-        }
+    }, [isActive, note, synth]);
 
 
     return(

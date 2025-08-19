@@ -34,7 +34,7 @@ export default function Piano() {
             borderColor={borderColor}
           />
         </div>
-        <div className="colorPickers flex flex-row justify-center items-center">
+        <div className="colorPickers flex flex-row justify-center items-center m-10">
           <div >
             <label className="flex flex-row items-center gap-5">
               Primary color :
@@ -46,7 +46,7 @@ export default function Piano() {
               />
             </label>
           </div>
-          <div>
+          <div >
             <label className="flex flex-row items-center gap-5">
               Secondary color :
               <input

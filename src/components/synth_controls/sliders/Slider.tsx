@@ -5,6 +5,8 @@ interface SliderProps {
   value: number;
   min: number;
   max: number;
+  step?: number;
+  onValueChange: (value: number) => void;
 }
 
 export function Slider(sliderProps: SliderProps) {
@@ -12,17 +14,19 @@ export function Slider(sliderProps: SliderProps) {
   
   const handleSliderValue = (value: number) => {
     setNewValue(value);
+    sliderProps.onValueChange(value);
   };
 
  
   return (
     <div className="flex flex-col justify-center items-center p-5">
-      <label className="basis-1/2 pb-2">{sliderProps.label}</label>
+      <label className="basis-1/2 pb-1">{sliderProps.label}</label>
       <input
         className="basis-1/2 accent-indigo-500"
         type="range"
         min={sliderProps.min}
         max={sliderProps.max}
+        step={sliderProps.step}
         value={newValue}
         onChange={(e) => handleSliderValue(parseFloat(e.target.value))}
       ></input>
