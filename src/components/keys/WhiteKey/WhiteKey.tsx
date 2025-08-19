@@ -30,7 +30,10 @@ function WhiteKey({
     
         const { synth } = useSynth();
 
+        
         useEffect(() => {
+        if (!synth) return;
+
         if (isActive) {
             if(synth.context.state !== 'running'){
                 synth.context.resume();

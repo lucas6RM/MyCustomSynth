@@ -6,6 +6,9 @@ import * as Tone from "tone";
 export function SynthControls() {
   const {
     currentSettings,
+    ready,
+    error,
+    initializeAudio,
     setAttack,
     setDecay,
     setSustain,
@@ -14,6 +17,20 @@ export function SynthControls() {
     setResonance,
     setVolume
   } = useSynth();
+
+    // Determine audio status for display.
+    const getAudioStatus = () => {
+        if (error) {
+        return { text: "Audio Error - Refresh Page", color: "bg-red-500", showStartButton: true };
+        }
+        if (ready) {
+        return { text: "Audio Active", color: "bg-green-500", showStartButton: false };
+        }
+        return { text: "Click to Start Audio", color: "bg-red-500", showStartButton: true };
+    };
+
+    const status = getAudioStatus();
+    console.log(status)
 
   return (
     <div className="mt-10">
@@ -32,7 +49,7 @@ export function SynthControls() {
             label={`resonance: ${currentSettings.filter.Q}`}
             value={currentSettings.filter.Q}
             min={0}
-            max={100}
+            max={10}
             step={0.1}
             onValueChange={function (value: number): void {
               setResonance(value);
@@ -107,14 +124,16 @@ export function SynthControls() {
         </div>
         <div className=" border-1 bg-red-300 p-5 rounded-xl">
           <button
-            className="text-2xl text-white font-semibold text-center"
+            className="text-l text-black font-semibold text-center"
             onClick={() => {
-              Tone.start();
-            }}>
-                panic
+              initializeAudio();
+            }}>{status.text}
           </button>
+          
         </div>
+        
       </div>
+      <p className="text-center mt-10"></p>
     </div>
   );
 }
