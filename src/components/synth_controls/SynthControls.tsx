@@ -1,7 +1,6 @@
 import { useSynth } from "../../providers/SynthProvider";
 import { Slider } from "./sliders/Slider";
 
-import * as Tone from "tone";
 
 export function SynthControls() {
   const {
